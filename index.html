@@ -28,7 +28,6 @@ nav{background:rgba(10,10,20,0.95);backdrop-filter:blur(10px);padding:15px 0;pos
 .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:15px;}
 .download-btn{background:linear-gradient(135deg,#ff3b3f 0%,#ff7b25 100%);border:none;padding:8px 15px;border-radius:8px;color:#fff;cursor:pointer;transition:.3s;}
 .download-btn:hover{opacity:.85;}
-
 .modal{display:none;position:fixed;z-index:200;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;}
 .modal-content{background:#1f1f2f;padding:30px;border-radius:12px;max-width:600px;width:90%;position:relative;animation:fadeIn .4s ease;}
 .close{position:absolute;top:15px;right:20px;font-size:1.5rem;color:#fff;cursor:pointer;}
@@ -71,6 +70,7 @@ footer{text-align:center;padding:20px;margin-top:40px;font-size:.9rem;color:#777
         <button class="download-btn">Download</button>
       </div>
     </div>
+
     <div class="ipa-card" onclick="openModal('spotify')">
       <h3>Spotify Music</h3>
       <p>Music streaming platform with playlists, podcasts, and offline listening.</p>
@@ -79,6 +79,7 @@ footer{text-align:center;padding:20px;margin-top:40px;font-size:.9rem;color:#777
         <button class="download-btn">Download</button>
       </div>
     </div>
+
     <div class="ipa-card" onclick="openModal('youtubeMusic')">
       <h3>YouTube Music</h3>
       <p>Official YouTube Music app for streaming music and videos.</p>
@@ -125,151 +126,259 @@ footer{text-align:center;padding:20px;margin-top:40px;font-size:.9rem;color:#777
     </div>
   </div>
 
-  <h2 class="category" id="games"><i class="fas fa-gamepad"></i> Games</h2>
-  <div class="ipa-grid">
-    <div class="ipa-card" onclick="openModal('minecraft')">
-      <h3>Minecraft</h3>
-      <p>The legendary block-building survival and adventure game.</p>
-      <div class="card-footer">
-        <span>v1.19.60</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('subwaySurfers')">
-      <h3>Subway Surfers</h3>
-      <p>Endless runner game through subways and dodging trains.</p>
-      <div class="card-footer">
-        <span>v3.5.2</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('blockBlast')">
-      <h3>Block Blast!</h3>
-      <p>Endless score-chasing block puzzle game.</p>
-      <div class="card-footer">
-        <span>v1.35.0</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('lastDay')">
-      <h3>Last Day on Earth: Survival</h3>
-      <p>Post-apocalyptic survival game with zombies.</p>
-      <div class="card-footer">
-        <span>v1.23.3</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('gta')">
-      <h3>GTA: San Andreas</h3>
-      <p>Open world action game with multiple versions.</p>
-      <div class="card-footer">
-        <span>v2.00</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('shadowFight2')">
-      <h3>Shadow Fight 2</h3>
-      <p>Martial arts fighting game with unique characters and weapons.</p>
-      <div class="card-footer">
-        <span>v2.28.0</span>
-        <button class="download-btn">Download</button>
-      </div>
+<h2 class="category" id="games"><i class="fas fa-gamepad"></i> Games</h2>
+<div class="ipa-grid">
+  <div class="ipa-card" onclick="openModal('minecraft')">
+    <h3>Minecraft</h3>
+    <p>The legendary block-building survival and adventure game.</p>
+    <div class="card-footer">
+      <span>v1.19.60</span>
+      <button class="download-btn">Download</button>
     </div>
   </div>
 
-  <h2 class="category" id="tools"><i class="fas fa-tools"></i> Tools & Utilities</h2>
-  <div class="ipa-grid">
-    <div class="ipa-card" onclick="openModal('discord')">
-      <h3>Discord</h3>
-      <p>Chat, voice, and video communication platform for communities.</p>
-      <div class="card-footer">
-        <span>v140.12</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('tweakBox')">
-      <h3>TweakBox</h3>
-      <p>Third-party app installer for modified apps and utilities.</p>
-      <div class="card-footer">
-        <span>v2.9.7</span>
-        <button class="download-btn">Download</button>
-      </div>
-    </div>
-
-    <div class="ipa-card" onclick="openModal('altStore')">
-      <h3>AltStore</h3>
-      <p>Alternative app store to sideload apps without jailbreak.</p>
-      <div class="card-footer">
-        <span>v1.5.8</span>
-        <button class="download-btn">Download</button>
-      </div>
+  <div class="ipa-card" onclick="openModal('subwaySurfers')">
+    <h3>Subway Surfers</h3>
+    <p>Endless runner game through subways and dodging trains.</p>
+    <div class="card-footer">
+      <span>v3.5.2</span>
+      <button class="download-btn">Download</button>
     </div>
   </div>
 
-  <div class="telegram-section" id="request">
-    <h2>Request an IPA</h2>
-    <p>If the IPA you want isn't listed, join our Telegram community to request it.</p>
-    <a href="https://t.me/GalacticIPA" class="telegram-btn" target="_blank">
-      <i class="fab fa-telegram"></i> Join Telegram
-    </a>
-  </div>
-
-  <!-- Modal Template -->
-  <div id="ipaModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 class="modal-title" id="modalTitle">App Title</h2>
-      <p class="modal-description" id="modalDescription">App description goes here.</p>
-      <div class="download-options" id="modalDownloads">
-        <!-- Download links will be populated dynamically -->
-      </div>
+  <div class="ipa-card" onclick="openModal('blockBlast')">
+    <h3>Block Blast!</h3>
+    <p>Endless score-chasing block puzzle game.</p>
+    <div class="card-footer">
+      <span>v1.35.0</span>
+      <button class="download-btn">Download</button>
     </div>
   </div>
 
-  <script>
-    // Modal, scroll, and search functions
-    const ipaData = { /* Your IPA data as defined in Part 3 */ };
+  <div class="ipa-card" onclick="openModal('lastDay')">
+    <h3>Last Day on Earth: Survival</h3>
+    <p>Post-apocalyptic survival game with zombies.</p>
+    <div class="card-footer">
+      <span>v1.23.3</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
 
-    function openModal(appKey) {
-      const modal = document.getElementById('ipaModal');
-      const title = document.getElementById('modalTitle');
-      const desc = document.getElementById('modalDescription');
-      const downloads = document.getElementById('modalDownloads');
-      const app = ipaData[appKey];
-      if (!app) return;
-      title.textContent = app.title;
-      desc.textContent = app.description;
-      downloads.innerHTML = '';
-      app.downloads.forEach(d => {
-        const a = document.createElement('a');
-        a.href = d.url;
-        a.textContent = d.label;
-        a.className = 'download-link';
-        a.target = '_blank';
-        downloads.appendChild(a);
-      });
-      modal.style.display = 'flex';
-    }
+  <div class="ipa-card" onclick="openModal('gta')">
+    <h3>GTA: San Andreas</h3>
+    <p>Open world action game with multiple versions.</p>
+    <div class="card-footer">
+      <span>v2.00</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
 
-    function closeModal() { document.getElementById('ipaModal').style.display='none'; }
-    window.onclick = function(e){ if(e.target==document.getElementById('ipaModal')) closeModal(); }
-    function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-    function searchIPA(){
-      const query = document.getElementById('searchBar').value.toLowerCase();
-      document.querySelectorAll('.ipa-card').forEach(card=>{
-        card.style.display = card.querySelector('h3').textContent.toLowerCase().includes(query)?'flex':'none';
-      });
-    }
-  </script>
+  <div class="ipa-card" onclick="openModal('shadowFight2')">
+    <h3>Shadow Fight 2</h3>
+    <p>Martial arts fighting game with unique characters and weapons.</p>
+    <div class="card-footer">
+      <span>v2.28.0</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
+</div>
 
-  <footer>
+<h2 class="category" id="tools"><i class="fas fa-tools"></i> Tools & Utilities</h2>
+<div class="ipa-grid">
+  <div class="ipa-card" onclick="openModal('discord')">
+    <h3>Discord</h3>
+    <p>Chat, voice, and video communication platform for communities.</p>
+    <div class="card-footer">
+      <span>v140.12</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
+
+  <div class="ipa-card" onclick="openModal('tweakBox')">
+    <h3>TweakBox</h3>
+    <p>Third-party app installer for modified apps and utilities.</p>
+    <div class="card-footer">
+      <span>v2.9.7</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
+
+  <div class="ipa-card" onclick="openModal('altStore')">
+    <h3>AltStore</h3>
+    <p>Alternative app store to sideload apps without jailbreak.</p>
+    <div class="card-footer">
+      <span>v1.5.8</span>
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
+</div>
+
+<div class="telegram-section" id="request">
+  <h2>Request an IPA</h2>
+  <p>If the IPA you want isn't listed, join our Telegram community to request it.</p>
+  <a href="https://t.me/GalaticIPA" class="telegram-btn" target="_blank">
+    <i class="fab fa-telegram"></i> Join Telegram
+  </a>
+</div>
+
+<!-- Modal Template -->
+<div id="ipaModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 class="modal-title" id="modalTitle">App Title</h2>
+    <p class="modal-description" id="modalDescription">App description goes here.</p>
+    <div class="download-options" id="modalDownloads">
+      <!-- Download links will be populated dynamically -->
+    </div>
+  </div>
+</div>
+
+<script>
+const ipaData = {
+  capcut: {
+    title: 'CapCut',
+    description: 'Video editor with powerful tools, effects, and music integration.',
+    downloads: [
+      {label: 'Download v1', url: 'https://file.ipaomtk.com/ipa/CapCut.ipa'},
+      {label: 'Download v2', url: 'https://file.ipaomtk.com/ipa/CapCut-2-IPAOMTK.COM.ipa'}
+    ]
+  },
+  spotify: {
+    title: 'Spotify Music',
+    description: 'Music streaming platform with playlists, podcasts, and offline listening.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/Spotify-ipaomtk.com.ipa'}]
+  },
+  youtubeMusic: {
+    title: 'YouTube Music',
+    description: 'Official YouTube Music app for streaming music and videos.',
+    downloads: [{label:'Download', url:'https://s1.ipaomtk.com/ipa/YouTube-Music-IPAOMTK.COM.ipa'}]
+  },
+  aiCover: {
+    title: 'AI Cover & Songs Music AI',
+    description: 'Generate covers and songs automatically using AI technology.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/AI_Cover_&_Songs_Music_AI-ipaomtk.com.ipa'}]
+  },
+  tikTok: {
+    title: 'TikTok IPA',
+    description: 'Short-form video platform with trending clips worldwide.',
+    downloads: [{label:'Download', url:'https://s1.ipaomtk.com/ipa/TikTok.ipa'}]
+  },
+  youtubePremium: {
+    title: 'YouTube Premium IPA',
+    description: 'Premium YouTube with ad-free experience and downloads.',
+    downloads: [{label:'Download', url:'https://files.onejailbreak.com/YouTubePlus_5.2b3_20.32.4.ipa'}]
+  },
+  movieBoxPro: {
+    title: 'MovieBox Pro IPA',
+    description: 'Stream movies and TV shows directly on your iOS device.',
+    downloads: [{label:'Download', url:'https://www.movieboxpro.app/ipa'}]
+  },
+  minecraft: {
+    title: 'Minecraft',
+    description: 'The legendary block-building survival and adventure game.',
+    downloads: [{label: 'Download', url: 'https://s1.ipaomtk.com/ipa/Minecraft-IPAOMTK.COM.ipa'}]
+  },
+  subwaySurfers: {
+    title: 'Subway Surfers',
+    description: 'Endless runner game through subways and dodging trains.',
+    downloads: [{label: 'Download', url: 'https://file.ipaomtk.com/ipa/Subway-Surfers-ipaomtk.com.ipa'}]
+  },
+  blockBlast: {
+    title: 'Block Blast!',
+    description: 'Endless score-chasing block puzzle game.',
+    downloads: [{label: 'Download', url: 'https://s1.ipaomtk.com/ipa/Block-Blast!-IPAOMTK.COM.ipa'}]
+  },
+  lastDay: {
+    title: 'Last Day on Earth: Survival',
+    description: 'Post-apocalyptic survival game with zombies.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/last-day-on-earth-hack.ipa'}]
+  },
+  gta: {
+    title: 'GTA: San Andreas',
+    description: 'Open world action game with multiple versions.',
+    downloads: [
+      {label: 'Normal Version', url: 'https://file.ipaomtk.com/ipa/GTA-San-Andreas-ipaomtk.com.ipa'},
+      {label: 'Original Version', url: 'https://s1.ipaomtk.com/ipa/GTA-SA-Original.ipa'},
+      {label: 'Mod Version', url: 'https://s1.ipaomtk.com/ipa/GTASA-MOD-IPAOMTK.COM.ipa'},
+      {label: 'HD Version', url: 'https://file.ipaomtk.com/ipa/GTA-SA-MOD-HD.ipa'},
+      {label: 'Definitive Version', url: 'https://file.ipaomtk.com/ipa/GTA-SA-Definitive-ipaomtk.com.ipa'}
+    ]
+  },
+  shadowFight2: {
+    title: 'Shadow Fight 2',
+    description: 'Martial arts fighting game with unique characters and weapons.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/Shadow-Fight-2.ipa'}]
+  },
+  discord: {
+    title: 'Discord IPA',
+    description: 'Chat, voice, and video communication platform for communities.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/Discord.ipa'}]
+  },
+  tweakBox: {
+    title: 'TweakBox IPA',
+    description: 'Third-party app installer for modified apps and utilities.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/TweakBox.ipa'}]
+  },
+  altStore: {
+    title: 'AltStore IPA',
+    description: 'Alternative app store to sideload apps without jailbreak.',
+    downloads: [{label:'Download', url:'https://file.ipaomtk.com/ipa/AltStore.ipa'}]
+  }
+};
+
+function openModal(appKey){
+  const modal=document.getElementById('ipaModal');
+  const title=document.getElementById('modalTitle');
+  const desc=document.getElementById('modalDescription');
+  const downloads=document.getElementById('modalDownloads');
+  const app=ipaData[appKey];
+  if(!app) return;
+  title.textContent=app.title;
+  desc.textContent=app.description;
+  downloads.innerHTML='';
+  app.downloads.forEach(d=>{
+    const a=document.createElement('a');
+    a.href=d.url;
+    a.textContent=d.label;
+    a.className='download-link';
+    a.target='_blank';
+    downloads.appendChild(a);
+  });
+  modal.style.display='flex';
+}
+
+function closeModal(){document.getElementById('ipaModal').style.display='none';}
+window.onclick=function(e){if(e.target==document.getElementById('ipaModal')) closeModal();}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function searchIPA(){
+  const query=document.getElementById('searchBar').value.toLowerCase();
+  document.querySelectorAll('.ipa-card').forEach(card=>{
+    card.style.display=card.querySelector('h3').textContent.toLowerCase().includes(query)?'flex':'none';
+  });
+}
+</script>
+
+<footer>
+  <div class="container">
     <p>&copy; 2025 GalacticIPA. All Rights Reserved.</p>
-  </footer>
-</body>
-</html>
+    <p>Join our Telegram for requests and updates: 
+      <a href="https://t.me/GalaticIPA" target="_blank" style="color:#ff7b25; text-decoration:none;">
+        t.me/GalaticIPA
+      </a>
+    </p>
+  </div>
+</footer>
+
+<style>
+.telegram-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  background:linear-gradient(135deg,#ff3b3f 0%,#ff7b25 100%);
+  color:#fff;
+  border-radius:50px;
+  text-decoration:none;
+  transition:.3s;
+}
+.telegram-btn:hover{opacity:.85;}
+</style>
