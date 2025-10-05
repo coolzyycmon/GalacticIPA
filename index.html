@@ -95,7 +95,7 @@
         <section>
           <div class="section-title" id="music"><i class="fas fa-music"></i> Featured & Music</div>
 
-          <div id="ipaGrid" class="ipa-grid"><!-- cards rendered here --></div>
+          <div id="ipaGrid" class="ipa-grid"></div>
 
           <div class="pagination" id="pagination">
             <button class="arrow" onclick="prevPage()" title="Previous"><i class="fas fa-chevron-left"></i></button>
@@ -151,128 +151,214 @@
 <script>
 /* ---------- IPA DATA (add/remove entries here) ---------- */
 const ipaData = [
-  { key:'capcut', title:'CapCut', desc:'Video editor with powerful tools, effects, and music integration.', downloads:[
-    {label:'CapCut (Primary)', url:'https://file.ipaomtk.com/ipa/CapCut.ipa'},
-    {label:'CapCut (Alt)', url:'https://file.ipaomtk.com/ipa/CapCut-2-IPAOMTK.COM.ipa'}
+  { key: 'capcut', title: 'CapCut', desc: 'CapCut is a versatile video editing app offering powerful tools, effects, filters, and music integration for creating professional-quality videos on iOS devices.', downloads: [
+    { label: 'CapCut (Primary)', url: 'https://file.ipaomtk.com/ipa/CapCut.ipa' },
+    { label: 'CapCut (Alt)', url: 'https://file.ipaomtk.com/ipa/CapCut-2-IPAOMTK.COM.ipa' },
+    { label: 'CapCut v12.0 Cracked', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=89e98019149e17f21cb1f4004fe33229' }
   ]},
-
-  { key:'minecraft', title:'Minecraft', desc:'Block-building survival & adventure.', downloads:[
-    {label:'Minecraft v1.21.111', url:'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.111_iosvizor_.ipa'},
-    {label:'Minecraft (IPAOMTK)', url:'https://s1.ipaomtk.com/ipa/Minecraft-IPAOMTK.COM.ipa'}
+  { key: 'minecraft', title: 'Minecraft', desc: 'Minecraft is a sandbox game where players explore infinite worlds, build structures, craft items, and survive against mobs in creative or survival modes.', downloads: [
+    { label: 'Minecraft v1.21.111', url: 'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.111_iosvizor_.ipa' },
+    { label: 'Minecraft (IPAOMTK)', url: 'https://s1.ipaomtk.com/ipa/Minecraft-IPAOMTK.COM.ipa' },
+    { label: 'Minecraft v1.21.101', url: 'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.101_iosvizor_.ipa' },
+    { label: 'Minecraft v1.21.90', url: 'https://dl.iosvizor.net/minecraft/Minecraft-v1.21.90-iosvizor.ipa' },
+    { label: 'Minecraft v1.21.71', url: 'https://dl.mcpelife.com/minecraft-ipa/1-21-71/Minecraft-v1.21.71.ipa' },
+    { label: 'Minecraft PE v1.20.15', url: 'https://dl.iosvizor.net/minecraft-pe/Minecraft-PE-v1.20.15-iosvizor.com.ipa' }
   ]},
-
-  { key:'subway', title:'Subway Surfers', desc:'Endless runner through subways.', downloads:[
-    {label:'Download', url:'https://file.ipaomtk.com/ipa/Subway-Surfers-ipaomtk.com.ipa'}
+  { key: 'subway', title: 'Subway Surfers', desc: 'Subway Surfers is an endless runner game where players dash through train tracks, dodge obstacles, collect coins, and use power-ups to achieve high scores.', downloads: [
+    { label: 'Download', url: 'https://file.ipaomtk.com/ipa/Subway-Surfers-ipaomtk.com.ipa' }
   ]},
-
-  { key:'scarlet', title:'Scarlet IPA', desc:'Custom ScarletAlpha build.', downloads:[
-    {label:'ScarletAlpha', url:'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ScarletAlpha.ipa'}
+  { key: 'scarlet', title: 'Scarlet IPA', desc: 'Scarlet is a third-party app store for sideloading jailbroken apps and games on iOS without jailbreaking, using corporate certificates for easy installation.', downloads: [
+    { label: 'ScarletAlpha', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ScarletAlpha.ipa' }
   ]},
-
-  { key:'esign', title:'ESign IPA', desc:'Sign documents offline/no logs.', downloads:[
-    {label:'ESignNoLogs', url:'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ESignNoLogs-5.0-1.1.ipa'}
+  { key: 'esign', title: 'ESign IPA', desc: 'ESign is an on-device IPA signer for iOS, enabling offline app installation without logs or a computer, perfect for sideloading with ease.', downloads: [
+    { label: 'ESignNoLogs', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ESignNoLogs-5.0-1.1.ipa' },
+    { label: 'ESign v5.0', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/OLD%20ESign_5.0_1743817421.ipa' }
   ]},
-
-  { key:'chatgpt', title:'ChatGPT IPA', desc:'ChatGPT iOS package.', downloads:[
-    {label:'ChatGPT IPA', url:'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ChatGPT_1.0_1750971508.ipa'}
+  { key: 'chatgpt', title: 'ChatGPT IPA', desc: 'ChatGPT is an AI-powered conversational app for iOS, offering intelligent responses, task assistance, and creative content generation with a user-friendly interface.', downloads: [
+    { label: 'ChatGPT IPA', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ChatGPT_1.0_1750971508.ipa' },
+    { label: 'ChatGPT w15', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=8e4aa2b940c217318069e6376fd2fc4d' }
   ]},
-
-  { key:'trollx', title:'TrollInstallerX', desc:'Installer with tweaks.', downloads:[
-    {label:'TrollInstallerX', url:'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/TrollInstallerX.ipa'}
+  { key: 'trollx', title: 'TrollInstallerX', desc: 'TrollInstallerX is a tool for installing tweaks and modified apps on iOS via TrollStore, supporting exploits for enhanced customization.', downloads: [
+    { label: 'TrollInstallerX', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/TrollInstallerX.ipa' }
   ]},
-
-  { key:'gta', title:'GTA: San Andreas', desc:'Multiple versions available.', downloads:[
-    {label:'Normal', url:'https://file.ipaomtk.com/ipa/GTA-San-Andreas-ipaomtk.com.ipa'},
-    {label:'Original', url:'https://s1.ipaomtk.com/ipa/GTA-SA-Original.ipa'},
-    {label:'Mod Version', url:'https://s1.ipaomtk.com/ipa/GTASA-MOD-IPAOMTK.COM.ipa'},
-    {label:'HD', url:'https://file.ipaomtk.com/ipa/GTA-SA-MOD-HD.ipa'},
-    {label:'Definitive', url:'https://file.ipaomtk.com/ipa/GTA-SA-Definitive-ipaomtk.com.ipa'}
+  { key: 'gta', title: 'GTA: San Andreas', desc: 'Grand Theft Auto: San Andreas is an open-world action game with story-driven missions, vehicle gameplay, and exploration in a fictional state.', downloads: [
+    { label: 'Normal', url: 'https://file.ipaomtk.com/ipa/GTA-San-Andreas-ipaomtk.com.ipa' },
+    { label: 'Original', url: 'https://s1.ipaomtk.com/ipa/GTA-SA-Original.ipa' },
+    { label: 'Mod Version', url: 'https://s1.ipaomtk.com/ipa/GTASA-MOD-IPAOMTK.COM.ipa' },
+    { label: 'HD', url: 'https://file.ipaomtk.com/ipa/GTA-SA-MOD-HD.ipa' },
+    { label: 'Definitive', url: 'https://file.ipaomtk.com/ipa/GTA-SA-Definitive-ipaomtk.com.ipa' }
   ]},
-
-  { key:'shadow2', title:'Shadow Fight 2', desc:'Martial arts fighting game.', downloads:[
-    {label:'Shadow Fight 2 (2.41.6)', url:'https://file.ipaomtk.com/ipa/Shadow-Fight-2.ipa'}
+  { key: 'shadow2', title: 'Shadow Fight 2', desc: 'Shadow Fight 2 is a martial arts fighting game with RPG elements, offering intense combat, weapon upgrades, and a demonic storyline.', downloads: [
+    { label: 'Shadow Fight 2 (2.41.6)', url: 'https://file.ipaomtk.com/ipa/Shadow-Fight-2.ipa' }
   ]},
-
-  { key:'shadow3', title:'Shadow Fight 3', desc:'RPG Fighting (updated build).', downloads:[
-    {label:'Shadow Fight 3 (1.42.2)', url:'https://file.ipaomtk.com/ipa/Shadow-Fight-3-1.40.0.ipa'}
+  { key: 'shadow3', title: 'Shadow Fight 3', desc: 'Shadow Fight 3 is an RPG fighting game with customizable characters, epic battles, gear collection, and a shadow energy-driven narrative.', downloads: [
+    { label: 'Shadow Fight 3 (1.42.2)', url: 'https://file.ipaomtk.com/ipa/Shadow-Fight-3-1.40.0.ipa' }
   ]},
-
-  { key:'steps', title:'StepsApp Pedometer', desc:'Steps tracking & pedometer.', downloads:[
-    {label:'StepsApp v8.4.4', url:'https://s1.ipaomtk.com/ipa/StepsApp-Pedometer-IPAOMTK.COM.ipa'}
+  { key: 'steps', title: 'StepsApp Pedometer', desc: 'StepsApp tracks steps, calories, distance, and activity levels with customizable goals and insightful analytics for fitness enthusiasts on iOS.', downloads: [
+    { label: 'StepsApp v8.4.4', url: 'https://s1.ipaomtk.com/ipa/StepsApp-Pedometer-IPAOMTK.COM.ipa' }
   ]},
-
-  { key:'spotify', title:'Spotify Music & Podcasts', desc:'Spotify (updated).', downloads:[
-    {label:'Spotify v9.0.82', url:'https://file.ipaomtk.com/ipa/Spotify-ipaomtk.com.ipa'}
+  { key: 'spotify', title: 'Spotify Music & Podcasts', desc: 'Spotify offers millions of songs, curated playlists, and podcasts with personalized recommendations for an immersive audio experience on iOS.', downloads: [
+    { label: 'Spotify v9.0.82', url: 'https://file.ipaomtk.com/ipa/Spotify-ipaomtk.com.ipa' }
   ]},
-
-  { key:'yt_oled', title:'YouTube (OLED)', desc:'YouTube OLED build (v20.39.4)', downloads:[
-    {label:'YouTube OLED', url:'https://file.ipaomtk.com/ipa/YouTube-OLED-19.46.3-ipaomtk.com.ipa'}
+  { key: 'eeveespotify', title: 'EeveeSpotify', desc: 'EeveeSpotify unlocks Spotify premium features like ad-free listening, unlimited skips, and high-quality audio without a subscription on iOS.', downloads: [
+    { label: 'EeveeSpotify v5.9.5-9.0.36', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=cfa7b2aa6c59e5f977a5b8339d1799da' }
   ]},
-
-  { key:'photomath', title:'Photomath', desc:'Solve math problems with camera.', downloads:[
-    {label:'Photomath v8.45.0', url:'https://s1.ipaomtk.com/ipa/Photomath-IPAOMTK.COM.ipa'}
+  { key: 'yt_oled', title: 'YouTube (OLED)', desc: 'YouTube OLED is optimized for OLED screens with enhanced dark mode, offering seamless video streaming and browsing on iOS.', downloads: [
+    { label: 'YouTube OLED', url: 'https://file.ipaomtk.com/ipa/YouTube-OLED-19.46.3-ipaomtk.com.ipa' }
   ]},
-
-  { key:'feather', title:'Feather', desc:'Lightweight Twitter/X client (Feather).', downloads:[
-    {label:'Feather v2.4.0', url:'https://github.com/khcrysalis/Feather/releases/download/v2.4.0/Feather.ipa'}
+  { key: 'photomath', title: 'Photomath', desc: 'Photomath scans math problems via camera, providing step-by-step solutions and explanations for equations, ideal for students on iOS.', downloads: [
+    { label: 'Photomath v8.45.0', url: 'https://s1.ipaomtk.com/ipa/Photomath-IPAOMTK.COM.ipa' },
+    { label: 'Photomath Plus v8.35.0', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=ea8595663fa014140e21d2adc9b04375' }
   ]},
-
-  { key:'terabox', title:'TeraBox++', desc:'TeraBox Premium modified.', downloads:[
-    {label:'TeraBox++', url:'https://archive.org/download/captions-12.36.1-15.0-le-ti/TeraBox++_4.5.5_15.0_LeTi.ipa'}
+  { key: 'feather', title: 'Feather', desc: 'Feather is a lightweight Twitter/X client with a clean interface, customizable features, and efficient performance for iOS users.', downloads: [
+    { label: 'Feather v2.4.0', url: 'https://github.com/khcrysalis/Feather/releases/download/v2.4.0/Feather.ipa' }
   ]},
-
-  { key:'inshot', title:'InShot++', desc:'InShot Pro modified.', downloads:[
-    {label:'InShot++', url:'https://archive.org/download/captions-12.36.1-15.0-le-ti/InShot++_1.90.1_15.0_LeTi.ipa'}
+  { key: 'terabox', title: 'TeraBox++', desc: 'TeraBox++ is a modified cloud storage app with premium features like expanded storage, faster uploads, and ad-free file management on iOS.', downloads: [
+    { label: 'TeraBox++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/TeraBox++_4.5.5_15.0_LeTi.ipa' }
   ]},
-
-  { key:'captionspp', title:'Captions++', desc:'Captions Max modified.', downloads:[
-    {label:'Captions++', url:'https://archive.org/download/captions-12.36.1-15.0-le-ti/Captions++_12.36.1_15.0_LeTi.ipa'}
+  { key: 'inshot', title: 'InShot++', desc: 'InShot++ is an enhanced video and photo editor with pro features like effects, music, and collage tools for iOS content creators.', downloads: [
+    { label: 'InShot++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/InShot++_1.90.1_15.0_LeTi.ipa' }
   ]},
-
-  { key:'ispoofer', title:'iSpoofer', desc:'Location spoofing (signed).', downloads:[
-    {label:'iSpoofer Signed', url:'https://ispoofer.app/Signed.ipa'}
+  { key: 'captionspp', title: 'Captions++', desc: 'Captions++ enhances video captioning with AI-driven tools, premium editing features, and customizable styles for professional results on iOS.', downloads: [
+    { label: 'Captions++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/Captions++_12.36.1_15.0_LeTi.ipa' }
   ]},
-
-  { key:'diamond', title:'Diamond Finder (Minecraft)', desc:'Find diamonds easily in Minecraft.', downloads:[
-    {label:'Diamond Finder', url:'https://file.ipaomtk.com/ipa/diamond-finder-for-minecraft.ipa'}
+  { key: 'ispoofer', title: 'iSpoofer', desc: 'iSpoofer enables location spoofing for iOS games like Pokémon GO, offering GPS manipulation and enhanced gameplay features.', downloads: [
+    { label: 'iSpoofer Signed', url: 'https://ispoofer.app/Signed.ipa' }
   ]},
-
-  { key:'moviebox', title:'MovieBox Pro', desc:'Stream movies & TV.', downloads:[
-    {label:'MovieBox Pro', url:'https://www.movieboxpro.app/ipa'}
+  { key: 'diamond', title: 'Diamond Finder (Minecraft)', desc: 'Diamond Finder aids Minecraft players by locating diamonds and resources using seed-based calculations and maps on iOS.', downloads: [
+    { label: 'Diamond Finder', url: 'https://file.ipaomtk.com/ipa/diamond-finder-for-minecraft.ipa' }
   ]},
-
-  { key:'geometry', title:'Geometry Dash', desc:'Rhythm-based platformer.', downloads:[
-    {label:'Geometry Dash v2.206', url:'https://dl.iosvizor.net/geometry-dash/Geometry-Dash-v2.206-iosvizor.ipa'}
+  { key: 'moviebox', title: 'MovieBox Pro', desc: 'MovieBox Pro streams movies and TV shows with high-quality video, subtitles, and offline download options for iOS users.', downloads: [
+    { label: 'MovieBox Pro', url: 'https://www.movieboxpro.app/ipa' }
   ]},
-
-  { key:'blockblast', title:'Block Blast!', desc:'Block puzzle game.', downloads:[
-    {label:'Block Blast', url:'https://s1.ipaomtk.com/ipa/Block-Blast!-IPAOMTK.COM.ipa'}
+  { key: 'geometry', title: 'Geometry Dash', desc: 'Geometry Dash is a rhythm-based platformer with challenging levels, custom music, and a level editor for iOS gamers.', downloads: [
+    { label: 'Geometry Dash v2.206', url: 'https://dl.iosvizor.net/geometry-dash/Geometry-Dash-v2.206-iosvizor.ipa' }
   ]},
-
-  { key:'captions', title:'Captions', desc:'Add captions to video.', downloads:[
-    {label:'Captions IPA', url:'https://s1.ipaomtk.com/ipa/Captions-IPAOMTK.COM.ipa'}
+  { key: 'blockblast', title: 'Block Blast!', desc: 'Block Blast! is a puzzle game where players match and blast blocks to clear boards and achieve high scores on iOS.', downloads: [
+    { label: 'Block Blast', url: 'https://s1.ipaomtk.com/ipa/Block-Blast!-IPAOMTK.COM.ipa' }
   ]},
-
-  { key:'rsboxing', title:'RS Boxing Champions', desc:'Boxing fighting game.', downloads:[
-    {label:'RS Boxing', url:'https://file.ipaomtk.com/ipa/RealSteelBoxing.ipa'}
+  { key: 'captions', title: 'Captions', desc: 'Captions generates and edits video subtitles with AI assistance, offering timing adjustments and style customization for iOS.', downloads: [
+    { label: 'Captions IPA', url: 'https://s1.ipaomtk.com/ipa/Captions-IPAOMTK.COM.ipa' }
   ]},
-
-  { key:'flightradar', title:'Flightradar24', desc:'Track flights in real-time.', downloads:[
-    {label:'Flightradar24', url:'https://file.ipaomtk.com/ipa/Flightradar24.ipa'}
+  { key: 'rsboxing', title: 'RS Boxing Champions', desc: 'Real Steel Boxing Champions is a robot boxing game with customizable fighters, intense matches, and multiplayer battles on iOS.', downloads: [
+    { label: 'RS Boxing', url: 'https://file.ipaomtk.com/ipa/RealSteelBoxing.ipa' }
   ]},
-
-  { key:'myfitness', title:'MyFitnessPal', desc:'Calorie Counter — MyFitnessPal v25.39.0', downloads:[
-    {label:'MyFitnessPal v25.39.0', url:'https://s1.ipaomtk.com/ipa/MyFitnessPal-IPAOMTK.COM.ipa'}
-  ]}
+  { key: 'flightradar', title: 'Flightradar24', desc: 'Flightradar24 tracks live aircraft movements worldwide, providing real-time flight details and airport information on iOS.', downloads: [
+    { label: 'Flightradar24', url: 'https://file.ipaomtk.com/ipa/Flightradar24.ipa' }
+  ]},
+  { key: 'myfitness', title: 'MyFitnessPal', desc: 'MyFitnessPal tracks calories, nutrition, and exercise, helping iOS users log food and progress toward fitness goals.', downloads: [
+    { label: 'MyFitnessPal v25.39.0', url: 'https://s1.ipaomtk.com/ipa/MyFitnessPal-IPAOMTK.COM.ipa' }
+  ]},
+  { key: 'delta', title: 'Delta', desc: 'Delta is a versatile emulator for iOS, supporting classic consoles like Game Boy and Nintendo 64 for retro gaming.', downloads: [
+    { label: 'Delta v2.693', url: 'https://deltaexecutor.filesadda.com/Delta-iOS-v2.693.ipa' }
+  ]},
+  { key: 'krnl', title: 'KRNL', desc: 'KRNL is a Roblox executor for iOS, enabling custom scripts and exploits to enhance gameplay in Roblox titles.', downloads: [
+    { label: 'KRNL v2.693', url: 'https://wrdcdn.net/r/54921/1759034901929/Krnl_release_692.ipa' }
+  ]},
+  { key: 'gbox', title: 'Gbox', desc: 'GBox is an iOS app signer for installing third-party IPAs on-device without jailbreaking, offering a seamless sideloading experience.', downloads: [
+    { label: 'Gbox v5.7.3', url: 'https://file.ipaomtk.com/ipa/Gbox.ipa' }
+  ]},
+  { key: 'flstudio', title: 'FL Studio Mobile', desc: 'FL Studio Mobile is a music production app for iOS, enabling multi-track recording, editing, and mixing with professional tools.', downloads: [
+    { label: 'FL Studio Mobile v4.7.7 SatellaJailed', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=db8c8974feba7a7d79395bcdde74173a' }
+  ]},
+  { key: 'speedtest', title: 'Speedtest VPN Premium', desc: 'Speedtest VPN Premium combines internet speed testing with a secure VPN, offering unlimited data and privacy on iOS.', downloads: [
+    { label: 'Speedtest VPN v5.4.0', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=c7ba49e890f2e1a6cbfa38439f641e8c' }
+  ]},
+  { key: 'bhtwitter', title: 'BHTwitter', desc: 'BHTwitter enhances Twitter/X with ad-free browsing, video downloads, and premium features like Twitter Blue on iOS.', downloads: [
+    { label: 'BHTwitter v4.0_9.4.4', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=7b2e7db306455962a90eba2ffb046256' }
+  ]},
+  { key: 'ytmusic', title: 'YTMusic Ultimate', desc: 'YTMusic Ultimate unlocks YouTube Music premium features like ad-free playback, background listening, and offline downloads on iOS.', downloads: [
+    { label: 'YTMusic Ultimate v1.4.1', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=2b91f46c0f95ef5d09bbee8aadf1838e' }
+  ]},
+  { key: 'oldos', title: 'OldOS', desc: 'OldOS recreates the iOS 4 interface on modern iPhones, offering a nostalgic experience with functional retro apps.', downloads: [
+    { label: 'OldOS v1.0.18', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=07e78be885420951a34e80615e402dc3' }
+  ]},
+  { key: 'gtalcs', title: 'GTA: Liberty City Stories', desc: 'GTA: Liberty City Stories is a prequel to GTA III, featuring mobster missions and open-world exploration in Liberty City.', downloads: [
+    { label: 'GTA Liberty City Stories v2.4.150', url: 'https://dl.iosvizor.net/grand-theft-auto-liberty-city-stories/GTA-Liberty-City-Stories-v2.4.150-iosvizor.ipa' }
+  ]},
+  { key: 'gtacw', title: 'GTA: Chinatown Wars', desc: 'GTA: Chinatown Wars offers top-down action with drug wars and missions in Liberty City’s Chinatown on iOS.', downloads: [
+    { label: 'GTA Chinatown Wars v4.5.5', url: 'https://dl.iosvizor.net/gta-chinatown-wars/GTA-Chinatown-Wars-v4.5.5-iosvizor.ipa' }
+  ]},
 ];
 
 /* ---------- blog data (simple) ---------- */
 const blogPosts = [
-  {id:1,title:'Welcome to GalacticIPA', excerpt:'We host curated IPA links. Learn how to install and keep safe.', body:'Full post content for welcome...'},
-  {id:2,title:'How to sideload IPAs safely', excerpt:'Basics on AltStore & certificate tips.', body:'Full how-to content...'},
-  {id:3,title:'Top 10 Mods this month', excerpt:'Hot modified IPAs trending now.', body:'Full list...'},
-  {id:4,title:'Troubleshooting downloads', excerpt:'What to do when a .ipa won’t download or install.', body:'Troubleshooting content...'},
-  {id:5,title:'Why backups matter', excerpt:'Always make backups before installing modified apps.', body:'Backup instructions...'}
+  { id: 1, title: 'Welcome to GalacticIPA', excerpt: 'We host curated IPA links. Learn how to install and keep safe.', body: 'Full post content for welcome...' },
+  { id: 2, title: 'How to sideload IPAs safely', excerpt: 'Basics on AltStore & certificate tips.', body: 'Full how-to content...' },
+  { id: 3, title: 'Top 10 Mods this month', excerpt: 'Hot modified IPAs trending now.', body: 'Full list...' },
+  { id: 4, title: 'Troubleshooting downloads', excerpt: 'What to do when a .ipa won’t download or install.', body: 'Troubleshooting content...' },
+  { id: 5, title: 'Why backups matter', excerpt: 'Always make backups before installing modified apps.', body: 'Backup instructions...' },
+  { id: 6, title: 'Using Scarlet to Install IPAs', excerpt: 'Scarlet is a third-party app store for installing jailbroken apps and games without jailbreaking.', body: `
+    Scarlet is a third-party app store and a tool for installing jailbroken games and apps without jailbreaking. Scarlet is not just an app store, but an entire platform for installing and managing your favorite apps on your iPhone, iPad, or iPod Touch. Scarlet uses a corporate developer certificate to install apps. Sometimes Apple revokes and blocks such certificates, but application creators re-sign it with a new one.
+
+    <h3>How to Download Scarlet?</h3>
+    1. Visit the official website (<a href="https://usescarlet.com/" target="_blank">usescarlet.com</a>).<br>
+    2. Scroll down, click "Install," and select "Direct Install."<br>
+    3. Open iPhone Settings, go to "General" > "VPN and Device Management," find the certificate with your Apple ID, and tap "Trust."<br>
+    4. The app is ready to use.<br>
+
+    <h3>How to Install Apps via Scarlet?</h3>
+    1. Download the desired IPA file and save it to the "Files" app (Apple’s default file manager).<br>
+    2. Open Scarlet, navigate to the installed apps section, and add a new app by selecting the IPA file.<br>
+    3. Follow the prompts to complete the installation.
+  `},
+  { id: 7, title: 'Installing IPAs with Sideloadly', excerpt: 'Sideloadly allows you to install any IPA file on your iOS device using a computer and Apple ID.', body: `
+    Sideloadly is a program that allows you to install any IPA file on your iOS device using your computer and Apple ID, serving as a working alternative to Cydia Impactor. Note: This method is for non-jailbroken devices, signing apps and games with an Apple ID. You can use your own account or a separate one, with a limit of 3 apps per Apple ID, each lasting 7 days before requiring re-signing.
+
+    <h3>How to Install an IPA File via Sideloadly?</h3>
+    1. Download and install Sideloadly on your computer (requires iTunes):<br>
+       - <a href="https://sideloadly.io/SideloadlySetup64.exe" target="_blank">Windows 64-bit</a><br>
+       - <a href="https://sideloadly.io/SideloadlySetup32.exe" target="_blank">Windows 32-bit</a><br>
+       - <a href="https://sideloadly.io/SideloadlySetup.dmg" target="_blank">MacOS</a><br>
+    2. Connect your iPhone or iPad to the computer via cable and ensure it appears under “iDevice.”<br>
+    3. Drag the IPA file into the Sideloadly window.<br>
+    4. Enter your Apple ID (preferably without two-factor authentication).<br>
+    5. Click “Start” and enter your Apple ID password when prompted (sent only to Apple servers).<br>
+    6. Wait for the app to install; “Done” will appear in the status, and the app icon will show on your device.<br>
+
+    <h3>Launching an App Installed via Sideloadly</h3>
+    1. On first launch, you may see an “untrustworthy developer” message.<br>
+    2. Go to Settings > General > Device Management (or VPN and Device Management).<br>
+    3. Find your Apple ID, tap it, and select “Trust ‘your Apple ID’,” then confirm by tapping “Trust.”<br>
+    4. The app is now ready to use.
+  `},
+  { id: 8, title: 'Erasing All Content and Settings on iOS Devices', excerpt: 'Learn how to erase all content and settings on your iPhone, iPad, or Apple Watch to resolve issues or prepare for sale.', body: `
+    Erasing all content and settings on your iPhone, iPad, or iPod Touch can resolve issues like blank or frozen screens, app crashes, keypad/touchscreen problems, audio issues, or syncing errors. It’s also essential when preparing to sell, give away, or trade in your device. This guide covers erasing iOS devices and Apple Watch, with or without a computer.
+
+    <h3>How to Erase iPhone/iPad Without a Computer</h3>
+    1. Sign out of your Apple ID (iCloud).<br>
+    2. Go to Settings > General > Transfer or Reset iPhone/iPad.<br>
+    3. Tap “Erase All Content and Settings.”<br>
+    4. Wait for the device to erase.<br>
+    <strong>Note:</strong> This will delete all files and data permanently.
+
+    <h3>How to Erase Apple Watch</h3>
+    1. Keep your Apple Watch and iPhone close together.<br>
+    2. Open the Apple Watch app on your iPhone, go to the My Watch tab, and tap “All Watches.”<br>
+    3. Tap the info button next to the watch you want to unpair.<br>
+    4. Tap “Unpair Apple Watch.”<br>
+    5. For GPS + Cellular models, choose to keep or remove your cellular plan.<br>
+    6. Confirm unpairing and enter your Apple ID password to disable Activation Lock.<br>
+    7. Your iPhone creates a backup before erasing. After unpairing, set up your Apple Watch again.<br>
+
+    <h3>How to Erase iPhone/iPad with a Computer</h3>
+    0. Sign out of your Apple ID (iCloud).<br>
+    1. Download and install iTunes (<a href="https://support.apple.com/downloads/itunes" target="_blank">support.apple.com/downloads/itunes</a>) on your computer.<br>
+    2. Download and install 3uTools (<a href="https://d-updater.3u.com/3utools/download/3uTools_v2.62.020_Setup.exe" target="_blank">3uTools</a>).<br>
+    3. Connect your device to the computer and trust the device.<br>
+    4. Open 3uTools and go to “Smart Flash.”<br>
+    5. Download any firmware version.<br>
+    6. Wait for the firmware download to complete.<br>
+    7. Select “Retain User Data” and click “Flash.”<br>
+    8. Wait 15-20 minutes for the process to finish.<br>
+    9. Set up your device.<br>
+
+    <h3>Handling “iPhone is Disabled” Issue</h3>
+    If you enter the wrong passcode multiple times, your iPhone may become disabled, limiting access to emergency calls only. To resolve this, erase and restore the device using the above computer-based method to regain access and reset the passcode.
+
+    <h3>Why Erase Your Device?</h3>
+    Erasing all content and settings securely removes your data and apps while maintaining the current iOS version, ideal for troubleshooting or preparing your device for a new owner. Always back up important data before erasing, as this process is irreversible.
+  `}
 ];
 
 /* ---------- pagination settings ---------- */
