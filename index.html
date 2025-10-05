@@ -64,6 +64,13 @@
   .close{background:transparent;border:none;color:#fff;font-size:1.2rem;cursor:pointer}
   .download-options{margin-top:12px;display:flex;flex-direction:column;gap:8px}
   .download-link{padding:10px;border-radius:8px;background:linear-gradient(180deg,#1c1d2a,#12121b);color:#eaf0ff;text-decoration:none;border:1px solid rgba(255,255,255,0.03)}
+  /* blog modal specific styles */
+  .blog-modal-content{max-height:70vh;overflow-y:auto;}
+  .blog-modal-content h3{color:var(--accent2);margin:12px 0 8px;font-size:1.2rem;}
+  .blog-modal-content a{color:var(--accent1);text-decoration:underline;}
+  .blog-modal-content a:hover{text-decoration:none;}
+  .blog-modal-content strong{font-weight:700;color:#fff;}
+  .blog-modal-content p, .blog-modal-content li{margin-bottom:8px;}
   footer{margin-top:32px;padding:20px;color:#9aa0b6;text-align:center}
 </style>
 </head>
@@ -76,9 +83,11 @@
 
     <nav>
       <div class="nav-container">
-        <button class="nav-btn" onclick="scrollToSection('music')"><i class="fas fa-music"></i> Music</button>
-        <button class="nav-btn" onclick="scrollToSection('games')"><i class="fas fa-gamepad"></i> Games</button>
-        <button class="nav-btn" onclick="scrollToSection('tools')"><i class="fas fa-tools"></i> Tools</button>
+        <button class="nav-btn" onclick="filterCards('all')"><i class="fas fa-th"></i> All</button>
+        <button class="nav-btn" onclick="filterCards('music')"><i class="fas fa-music"></i> Music</button>
+        <button class="nav-btn" onclick="filterCards('games')"><i class="fas fa-gamepad"></i> Games</button>
+        <button class="nav-btn" onclick="filterCards('tools')"><i class="fas fa-tools"></i> Tools</button>
+        <button class="nav-btn" onclick="filterCards('social')"><i class="fas fa-users"></i> Social</button>
         <button class="nav-btn" onclick="scrollToSection('request')"><i class="fas fa-paper-plane"></i> Request</button>
       </div>
     </nav>
@@ -143,6 +152,16 @@
       </div>
     </div>
 
+    <div id="blogModal" class="modal" aria-hidden="true">
+      <div class="modal-content blog-modal-content" role="dialog" aria-modal="true">
+        <div class="modal-head">
+          <h2 id="blogModalTitle">Blog Post</h2>
+          <button class="close" onclick="closeBlogModal()">&times;</button>
+        </div>
+        <div id="blogModalBody" style="color:var(--muted);margin-top:8px"></div>
+      </div>
+    </div>
+
     <footer>
       <div>© 2025 GalacticIPA — All rights reserved.</div>
     </footer>
@@ -151,132 +170,132 @@
 <script>
 /* ---------- IPA DATA (add/remove entries here) ---------- */
 const ipaData = [
-  { key: 'capcut', title: 'CapCut', desc: 'CapCut is a versatile video editing app offering powerful tools, effects, filters, and music integration for creating professional-quality videos on iOS devices.', downloads: [
+  { key: 'capcut', title: 'CapCut', desc: 'CapCut is a versatile video editing app offering powerful tools, effects, filters, and music integration for creating professional-quality videos on iOS devices.', category: 'tools', downloads: [
     { label: 'CapCut (Primary)', url: 'https://file.ipaomtk.com/ipa/CapCut.ipa' },
     { label: 'CapCut (Alt)', url: 'https://file.ipaomtk.com/ipa/CapCut-2-IPAOMTK.COM.ipa' },
     { label: 'CapCut v12.0 Cracked', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=89e98019149e17f21cb1f4004fe33229' }
   ]},
-  { key: 'minecraft', title: 'Minecraft', desc: 'Minecraft is a sandbox game where players explore infinite worlds, build structures, craft items, and survive against mobs in creative or survival modes.', downloads: [
+  { key: 'minecraft', title: 'Minecraft', desc: 'Minecraft is a sandbox game where players explore infinite worlds, build structures, craft items, and survive against mobs in creative or survival modes.', category: 'games', downloads: [
     { label: 'Minecraft v1.21.111', url: 'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.111_iosvizor_.ipa' },
     { label: 'Minecraft (IPAOMTK)', url: 'https://s1.ipaomtk.com/ipa/Minecraft-IPAOMTK.COM.ipa' },
     { label: 'Minecraft v1.21.101', url: 'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.101_iosvizor_.ipa' },
-    { label: 'Minecraft v1.21.90', url: 'https://dl.iosvizor.net/minecraft/Minecraft-v1.21.90-iosvizor.ipa' },
+    { label: 'Minecraft v1.21.90', url: 'https://dl.iosvizor.net/minecraft/Minecraft_v1.21.90-iosvizor.ipa' },
     { label: 'Minecraft v1.21.71', url: 'https://dl.mcpelife.com/minecraft-ipa/1-21-71/Minecraft-v1.21.71.ipa' },
     { label: 'Minecraft PE v1.20.15', url: 'https://dl.iosvizor.net/minecraft-pe/Minecraft-PE-v1.20.15-iosvizor.com.ipa' }
   ]},
-  { key: 'subway', title: 'Subway Surfers', desc: 'Subway Surfers is an endless runner game where players dash through train tracks, dodge obstacles, collect coins, and use power-ups to achieve high scores.', downloads: [
+  { key: 'subway', title: 'Subway Surfers', desc: 'Subway Surfers is an endless runner game where players dash through train tracks, dodge obstacles, collect coins, and use power-ups to achieve high scores.', category: 'games', downloads: [
     { label: 'Download', url: 'https://file.ipaomtk.com/ipa/Subway-Surfers-ipaomtk.com.ipa' }
   ]},
-  { key: 'scarlet', title: 'Scarlet IPA', desc: 'Scarlet is a third-party app store for sideloading jailbroken apps and games on iOS without jailbreaking, using corporate certificates for easy installation.', downloads: [
+  { key: 'scarlet', title: 'Scarlet IPA', desc: 'Scarlet is a third-party app store for sideloading jailbroken apps and games on iOS without jailbreaking, using corporate certificates for easy installation.', category: 'tools', downloads: [
     { label: 'ScarletAlpha', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ScarletAlpha.ipa' }
   ]},
-  { key: 'esign', title: 'ESign IPA', desc: 'ESign is an on-device IPA signer for iOS, enabling offline app installation without logs or a computer, perfect for sideloading with ease.', downloads: [
+  { key: 'esign', title: 'ESign IPA', desc: 'ESign is an on-device IPA signer for iOS, enabling offline app installation without logs or a computer, perfect for sideloading with ease.', category: 'tools', downloads: [
     { label: 'ESignNoLogs', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ESignNoLogs-5.0-1.1.ipa' },
     { label: 'ESign v5.0', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/OLD%20ESign_5.0_1743817421.ipa' }
   ]},
-  { key: 'chatgpt', title: 'ChatGPT IPA', desc: 'ChatGPT is an AI-powered conversational app for iOS, offering intelligent responses, task assistance, and creative content generation with a user-friendly interface.', downloads: [
+  { key: 'chatgpt', title: 'ChatGPT IPA', desc: 'ChatGPT is an AI-powered conversational app for iOS, offering intelligent responses, task assistance, and creative content generation with a user-friendly interface.', category: 'tools', downloads: [
     { label: 'ChatGPT IPA', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/ChatGPT_1.0_1750971508.ipa' },
     { label: 'ChatGPT w15', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=8e4aa2b940c217318069e6376fd2fc4d' }
   ]},
-  { key: 'trollx', title: 'TrollInstallerX', desc: 'TrollInstallerX is a tool for installing tweaks and modified apps on iOS via TrollStore, supporting exploits for enhanced customization.', downloads: [
+  { key: 'trollx', title: 'TrollInstallerX', desc: 'TrollInstallerX is a tool for installing tweaks and modified apps on iOS via TrollStore, supporting exploits for enhanced customization.', category: 'tools', downloads: [
     { label: 'TrollInstallerX', url: 'https://raw.githubusercontent.com/coolzyycmon/IPAs/main/TrollInstallerX.ipa' }
   ]},
-  { key: 'gta', title: 'GTA: San Andreas', desc: 'Grand Theft Auto: San Andreas is an open-world action game with story-driven missions, vehicle gameplay, and exploration in a fictional state.', downloads: [
+  { key: 'gta', title: 'GTA: San Andreas', desc: 'Grand Theft Auto: San Andreas is an open-world action game with story-driven missions, vehicle gameplay, and exploration in a fictional state.', category: 'games', downloads: [
     { label: 'Normal', url: 'https://file.ipaomtk.com/ipa/GTA-San-Andreas-ipaomtk.com.ipa' },
     { label: 'Original', url: 'https://s1.ipaomtk.com/ipa/GTA-SA-Original.ipa' },
     { label: 'Mod Version', url: 'https://s1.ipaomtk.com/ipa/GTASA-MOD-IPAOMTK.COM.ipa' },
     { label: 'HD', url: 'https://file.ipaomtk.com/ipa/GTA-SA-MOD-HD.ipa' },
     { label: 'Definitive', url: 'https://file.ipaomtk.com/ipa/GTA-SA-Definitive-ipaomtk.com.ipa' }
   ]},
-  { key: 'shadow2', title: 'Shadow Fight 2', desc: 'Shadow Fight 2 is a martial arts fighting game with RPG elements, offering intense combat, weapon upgrades, and a demonic storyline.', downloads: [
+  { key: 'shadow2', title: 'Shadow Fight 2', desc: 'Shadow Fight 2 is a martial arts fighting game with RPG elements, offering intense combat, weapon upgrades, and a demonic storyline.', category: 'games', downloads: [
     { label: 'Shadow Fight 2 (2.41.6)', url: 'https://file.ipaomtk.com/ipa/Shadow-Fight-2.ipa' }
   ]},
-  { key: 'shadow3', title: 'Shadow Fight 3', desc: 'Shadow Fight 3 is an RPG fighting game with customizable characters, epic battles, gear collection, and a shadow energy-driven narrative.', downloads: [
+  { key: 'shadow3', title: 'Shadow Fight 3', desc: 'Shadow Fight 3 is an RPG fighting game with customizable characters, epic battles, gear collection, and a shadow energy-driven narrative.', category: 'games', downloads: [
     { label: 'Shadow Fight 3 (1.42.2)', url: 'https://file.ipaomtk.com/ipa/Shadow-Fight-3-1.40.0.ipa' }
   ]},
-  { key: 'steps', title: 'StepsApp Pedometer', desc: 'StepsApp tracks steps, calories, distance, and activity levels with customizable goals and insightful analytics for fitness enthusiasts on iOS.', downloads: [
+  { key: 'steps', title: 'StepsApp Pedometer', desc: 'StepsApp tracks steps, calories, distance, and activity levels with customizable goals and insightful analytics for fitness enthusiasts on iOS.', category: 'tools', downloads: [
     { label: 'StepsApp v8.4.4', url: 'https://s1.ipaomtk.com/ipa/StepsApp-Pedometer-IPAOMTK.COM.ipa' }
   ]},
-  { key: 'spotify', title: 'Spotify Music & Podcasts', desc: 'Spotify offers millions of songs, curated playlists, and podcasts with personalized recommendations for an immersive audio experience on iOS.', downloads: [
+  { key: 'spotify', title: 'Spotify Music & Podcasts', desc: 'Spotify offers millions of songs, curated playlists, and podcasts with personalized recommendations for an immersive audio experience on iOS.', category: 'music', downloads: [
     { label: 'Spotify v9.0.82', url: 'https://file.ipaomtk.com/ipa/Spotify-ipaomtk.com.ipa' }
   ]},
-  { key: 'eeveespotify', title: 'EeveeSpotify', desc: 'EeveeSpotify unlocks Spotify premium features like ad-free listening, unlimited skips, and high-quality audio without a subscription on iOS.', downloads: [
+  { key: 'eeveespotify', title: 'EeveeSpotify', desc: 'EeveeSpotify unlocks Spotify premium features like ad-free listening, unlimited skips, and high-quality audio without a subscription on iOS.', category: 'music', downloads: [
     { label: 'EeveeSpotify v5.9.5-9.0.36', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=cfa7b2aa6c59e5f977a5b8339d1799da' }
   ]},
-  { key: 'yt_oled', title: 'YouTube (OLED)', desc: 'YouTube OLED is optimized for OLED screens with enhanced dark mode, offering seamless video streaming and browsing on iOS.', downloads: [
+  { key: 'yt_oled', title: 'YouTube (OLED)', desc: 'YouTube OLED is optimized for OLED screens with enhanced dark mode, offering seamless video streaming and browsing on iOS.', category: 'social', downloads: [
     { label: 'YouTube OLED', url: 'https://file.ipaomtk.com/ipa/YouTube-OLED-19.46.3-ipaomtk.com.ipa' }
   ]},
-  { key: 'photomath', title: 'Photomath', desc: 'Photomath scans math problems via camera, providing step-by-step solutions and explanations for equations, ideal for students on iOS.', downloads: [
+  { key: 'photomath', title: 'Photomath', desc: 'Photomath scans math problems via camera, providing step-by-step solutions and explanations for equations, ideal for students on iOS.', category: 'tools', downloads: [
     { label: 'Photomath v8.45.0', url: 'https://s1.ipaomtk.com/ipa/Photomath-IPAOMTK.COM.ipa' },
     { label: 'Photomath Plus v8.35.0', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=ea8595663fa014140e21d2adc9b04375' }
   ]},
-  { key: 'feather', title: 'Feather', desc: 'Feather is a lightweight Twitter/X client with a clean interface, customizable features, and efficient performance for iOS users.', downloads: [
+  { key: 'feather', title: 'Feather', desc: 'Feather is a lightweight Twitter/X client with a clean interface, customizable features, and efficient performance for iOS users.', category: 'social', downloads: [
     { label: 'Feather v2.4.0', url: 'https://github.com/khcrysalis/Feather/releases/download/v2.4.0/Feather.ipa' }
   ]},
-  { key: 'terabox', title: 'TeraBox++', desc: 'TeraBox++ is a modified cloud storage app with premium features like expanded storage, faster uploads, and ad-free file management on iOS.', downloads: [
+  { key: 'terabox', title: 'TeraBox++', desc: 'TeraBox++ is a modified cloud storage app with premium features like expanded storage, faster uploads, and ad-free file management on iOS.', category: 'tools', downloads: [
     { label: 'TeraBox++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/TeraBox++_4.5.5_15.0_LeTi.ipa' }
   ]},
-  { key: 'inshot', title: 'InShot++', desc: 'InShot++ is an enhanced video and photo editor with pro features like effects, music, and collage tools for iOS content creators.', downloads: [
+  { key: 'inshot', title: 'InShot++', desc: 'InShot++ is an enhanced video and photo editor with pro features like effects, music, and collage tools for iOS content creators.', category: 'tools', downloads: [
     { label: 'InShot++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/InShot++_1.90.1_15.0_LeTi.ipa' }
   ]},
-  { key: 'captionspp', title: 'Captions++', desc: 'Captions++ enhances video captioning with AI-driven tools, premium editing features, and customizable styles for professional results on iOS.', downloads: [
+  { key: 'captionspp', title: 'Captions++', desc: 'Captions++ enhances video captioning with AI-driven tools, premium editing features, and customizable styles for professional results on iOS.', category: 'tools', downloads: [
     { label: 'Captions++', url: 'https://archive.org/download/captions-12.36.1-15.0-le-ti/Captions++_12.36.1_15.0_LeTi.ipa' }
   ]},
-  { key: 'ispoofer', title: 'iSpoofer', desc: 'iSpoofer enables location spoofing for iOS games like Pokémon GO, offering GPS manipulation and enhanced gameplay features.', downloads: [
+  { key: 'ispoofer', title: 'iSpoofer', desc: 'iSpoofer enables location spoofing for iOS games like Pokémon GO, offering GPS manipulation and enhanced gameplay features.', category: 'tools', downloads: [
     { label: 'iSpoofer Signed', url: 'https://ispoofer.app/Signed.ipa' }
   ]},
-  { key: 'diamond', title: 'Diamond Finder (Minecraft)', desc: 'Diamond Finder aids Minecraft players by locating diamonds and resources using seed-based calculations and maps on iOS.', downloads: [
+  { key: 'diamond', title: 'Diamond Finder (Minecraft)', desc: 'Diamond Finder aids Minecraft players by locating diamonds and resources using seed-based calculations and maps on iOS.', category: 'games', downloads: [
     { label: 'Diamond Finder', url: 'https://file.ipaomtk.com/ipa/diamond-finder-for-minecraft.ipa' }
   ]},
-  { key: 'moviebox', title: 'MovieBox Pro', desc: 'MovieBox Pro streams movies and TV shows with high-quality video, subtitles, and offline download options for iOS users.', downloads: [
+  { key: 'moviebox', title: 'MovieBox Pro', desc: 'MovieBox Pro streams movies and TV shows with high-quality video, subtitles, and offline download options for iOS users.', category: 'tools', downloads: [
     { label: 'MovieBox Pro', url: 'https://www.movieboxpro.app/ipa' }
   ]},
-  { key: 'geometry', title: 'Geometry Dash', desc: 'Geometry Dash is a rhythm-based platformer with challenging levels, custom music, and a level editor for iOS gamers.', downloads: [
+  { key: 'geometry', title: 'Geometry Dash', desc: 'Geometry Dash is a rhythm-based platformer with challenging levels, custom music, and a level editor for iOS gamers.', category: 'games', downloads: [
     { label: 'Geometry Dash v2.206', url: 'https://dl.iosvizor.net/geometry-dash/Geometry-Dash-v2.206-iosvizor.ipa' }
   ]},
-  { key: 'blockblast', title: 'Block Blast!', desc: 'Block Blast! is a puzzle game where players match and blast blocks to clear boards and achieve high scores on iOS.', downloads: [
+  { key: 'blockblast', title: 'Block Blast!', desc: 'Block Blast! is a puzzle game where players match and blast blocks to clear boards and achieve high scores on iOS.', category: 'games', downloads: [
     { label: 'Block Blast', url: 'https://s1.ipaomtk.com/ipa/Block-Blast!-IPAOMTK.COM.ipa' }
   ]},
-  { key: 'captions', title: 'Captions', desc: 'Captions generates and edits video subtitles with AI assistance, offering timing adjustments and style customization for iOS.', downloads: [
+  { key: 'captions', title: 'Captions', desc: 'Captions generates and edits video subtitles with AI assistance, offering timing adjustments and style customization for iOS.', category: 'tools', downloads: [
     { label: 'Captions IPA', url: 'https://s1.ipaomtk.com/ipa/Captions-IPAOMTK.COM.ipa' }
   ]},
-  { key: 'rsboxing', title: 'RS Boxing Champions', desc: 'Real Steel Boxing Champions is a robot boxing game with customizable fighters, intense matches, and multiplayer battles on iOS.', downloads: [
+  { key: 'rsboxing', title: 'RS Boxing Champions', desc: 'Real Steel Boxing Champions is a robot boxing game with customizable fighters, intense matches, and multiplayer battles on iOS.', category: 'games', downloads: [
     { label: 'RS Boxing', url: 'https://file.ipaomtk.com/ipa/RealSteelBoxing.ipa' }
   ]},
-  { key: 'flightradar', title: 'Flightradar24', desc: 'Flightradar24 tracks live aircraft movements worldwide, providing real-time flight details and airport information on iOS.', downloads: [
+  { key: 'flightradar', title: 'Flightradar24', desc: 'Flightradar24 tracks live aircraft movements worldwide, providing real-time flight details and airport information on iOS.', category: 'tools', downloads: [
     { label: 'Flightradar24', url: 'https://file.ipaomtk.com/ipa/Flightradar24.ipa' }
   ]},
-  { key: 'myfitness', title: 'MyFitnessPal', desc: 'MyFitnessPal tracks calories, nutrition, and exercise, helping iOS users log food and progress toward fitness goals.', downloads: [
+  { key: 'myfitness', title: 'MyFitnessPal', desc: 'MyFitnessPal tracks calories, nutrition, and exercise, helping iOS users log food and progress toward fitness goals.', category: 'tools', downloads: [
     { label: 'MyFitnessPal v25.39.0', url: 'https://s1.ipaomtk.com/ipa/MyFitnessPal-IPAOMTK.COM.ipa' }
   ]},
-  { key: 'delta', title: 'Delta', desc: 'Delta is a versatile emulator for iOS, supporting classic consoles like Game Boy and Nintendo 64 for retro gaming.', downloads: [
+  { key: 'delta', title: 'Delta', desc: 'Delta is a versatile emulator for iOS, supporting classic consoles like Game Boy and Nintendo 64 for retro gaming.', category: 'games', downloads: [
     { label: 'Delta v2.693', url: 'https://deltaexecutor.filesadda.com/Delta-iOS-v2.693.ipa' }
   ]},
-  { key: 'krnl', title: 'KRNL', desc: 'KRNL is a Roblox executor for iOS, enabling custom scripts and exploits to enhance gameplay in Roblox titles.', downloads: [
+  { key: 'krnl', title: 'KRNL', desc: 'KRNL is a Roblox executor for iOS, enabling custom scripts and exploits to enhance gameplay in Roblox titles.', category: 'tools', downloads: [
     { label: 'KRNL v2.693', url: 'https://wrdcdn.net/r/54921/1759034901929/Krnl_release_692.ipa' }
   ]},
-  { key: 'gbox', title: 'Gbox', desc: 'GBox is an iOS app signer for installing third-party IPAs on-device without jailbreaking, offering a seamless sideloading experience.', downloads: [
+  { key: 'gbox', title: 'Gbox', desc: 'GBox is an iOS app signer for installing third-party IPAs on-device without jailbreaking, offering a seamless sideloading experience.', category: 'tools', downloads: [
     { label: 'Gbox v5.7.3', url: 'https://file.ipaomtk.com/ipa/Gbox.ipa' }
   ]},
-  { key: 'flstudio', title: 'FL Studio Mobile', desc: 'FL Studio Mobile is a music production app for iOS, enabling multi-track recording, editing, and mixing with professional tools.', downloads: [
+  { key: 'flstudio', title: 'FL Studio Mobile', desc: 'FL Studio Mobile is a music production app for iOS, enabling multi-track recording, editing, and mixing with professional tools.', category: 'music', downloads: [
     { label: 'FL Studio Mobile v4.7.7 SatellaJailed', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=db8c8974feba7a7d79395bcdde74173a' }
   ]},
-  { key: 'speedtest', title: 'Speedtest VPN Premium', desc: 'Speedtest VPN Premium combines internet speed testing with a secure VPN, offering unlimited data and privacy on iOS.', downloads: [
+  { key: 'speedtest', title: 'Speedtest VPN Premium', desc: 'Speedtest VPN Premium combines internet speed testing with a secure VPN, offering unlimited data and privacy on iOS.', category: 'tools', downloads: [
     { label: 'Speedtest VPN v5.4.0', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=c7ba49e890f2e1a6cbfa38439f641e8c' }
   ]},
-  { key: 'bhtwitter', title: 'BHTwitter', desc: 'BHTwitter enhances Twitter/X with ad-free browsing, video downloads, and premium features like Twitter Blue on iOS.', downloads: [
+  { key: 'bhtwitter', title: 'BHTwitter', desc: 'BHTwitter enhances Twitter/X with ad-free browsing, video downloads, and premium features like Twitter Blue on iOS.', category: 'social', downloads: [
     { label: 'BHTwitter v4.0_9.4.4', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=7b2e7db306455962a90eba2ffb046256' }
   ]},
-  { key: 'ytmusic', title: 'YTMusic Ultimate', desc: 'YTMusic Ultimate unlocks YouTube Music premium features like ad-free playback, background listening, and offline downloads on iOS.', downloads: [
+  { key: 'ytmusic', title: 'YTMusic Ultimate', desc: 'YTMusic Ultimate unlocks YouTube Music premium features like ad-free playback, background listening, and offline downloads on iOS.', category: 'music', downloads: [
     { label: 'YTMusic Ultimate v1.4.1', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=2b91f46c0f95ef5d09bbee8aadf1838e' }
   ]},
-  { key: 'oldos', title: 'OldOS', desc: 'OldOS recreates the iOS 4 interface on modern iPhones, offering a nostalgic experience with functional retro apps.', downloads: [
+  { key: 'oldos', title: 'OldOS', desc: 'OldOS recreates the iOS 4 interface on modern iPhones, offering a nostalgic experience with functional retro apps.', category: 'tools', downloads: [
     { label: 'OldOS v1.0.18', url: 'https://ipa.cypwn.xyz/serve/get.php?md5=07e78be885420951a34e80615e402dc3' }
   ]},
-  { key: 'gtalcs', title: 'GTA: Liberty City Stories', desc: 'GTA: Liberty City Stories is a prequel to GTA III, featuring mobster missions and open-world exploration in Liberty City.', downloads: [
+  { key: 'gtalcs', title: 'GTA: Liberty City Stories', desc: 'GTA: Liberty City Stories is a prequel to GTA III, featuring mobster missions and open-world exploration in Liberty City.', category: 'games', downloads: [
     { label: 'GTA Liberty City Stories v2.4.150', url: 'https://dl.iosvizor.net/grand-theft-auto-liberty-city-stories/GTA-Liberty-City-Stories-v2.4.150-iosvizor.ipa' }
   ]},
-  { key: 'gtacw', title: 'GTA: Chinatown Wars', desc: 'GTA: Chinatown Wars offers top-down action with drug wars and missions in Liberty City’s Chinatown on iOS.', downloads: [
+  { key: 'gtacw', title: 'GTA: Chinatown Wars', desc: 'GTA: Chinatown Wars offers top-down action with drug wars and missions in Liberty City’s Chinatown on iOS.', category: 'games', downloads: [
     { label: 'GTA Chinatown Wars v4.5.5', url: 'https://dl.iosvizor.net/gta-chinatown-wars/GTA-Chinatown-Wars-v4.5.5-iosvizor.ipa' }
   ]},
 ];
@@ -365,6 +384,7 @@ const blogPosts = [
 let currentPage = 1;
 const perPage = 8; // cards per page
 let filtered = ipaData.slice(); // current filtered list
+let currentCategory = 'all'; // track current category
 
 /* ---------- render functions ---------- */
 function renderCards(){
@@ -410,15 +430,18 @@ function prevPage(){ if(currentPage>1){ currentPage--; renderCards(); } }
 function nextPage(){ const total = Math.ceil(filtered.length / perPage); if(currentPage<total){ currentPage++; renderCards(); } }
 
 /* filter/search */
-function filterCards(){
+function filterCards(category = currentCategory){
   const q = (document.getElementById('searchBarTop').value || '').trim().toLowerCase();
-  if(!q){ filtered = ipaData.slice(); }
-  else { filtered = ipaData.filter(i => i.title.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q)); }
+  currentCategory = category; // update current category
+  filtered = ipaData.filter(i => 
+    (category === 'all' || i.category === category) &&
+    (q === '' || i.title.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q))
+  );
   currentPage = 1;
   renderCards();
 }
 
-/* modal logic */
+/* IPA modal logic */
 function openModal(key){
   const item = ipaData.find(i => i.key === key);
   if(!item) return;
@@ -442,7 +465,26 @@ function closeModal(){
   document.getElementById('ipaModal').style.display = 'none';
   document.getElementById('ipaModal').setAttribute('aria-hidden','true');
 }
-window.onclick = (e) => { if(e.target === document.getElementById('ipaModal')) closeModal(); };
+
+/* Blog modal logic */
+function openBlogModal(id){
+  const post = blogPosts.find(p => p.id === id);
+  if(!post) return;
+  document.getElementById('blogModalTitle').textContent = post.title;
+  document.getElementById('blogModalBody').innerHTML = post.body;
+  document.getElementById('blogModal').style.display = 'flex';
+  document.getElementById('blogModal').setAttribute('aria-hidden','false');
+}
+function closeBlogModal(){
+  document.getElementById('blogModal').style.display = 'none';
+  document.getElementById('blogModal').setAttribute('aria-hidden','true');
+}
+
+/* Handle modal close on outside click */
+window.onclick = (e) => {
+  if(e.target === document.getElementById('ipaModal')) closeModal();
+  if(e.target === document.getElementById('blogModal')) closeBlogModal();
+};
 
 /* blog rendering with simple pagination */
 let blogPage = 1;
@@ -457,7 +499,7 @@ function renderBlog(){
     el.className='blog-post';
     el.innerHTML = `<div class="blog-title">${escapeHtml(p.title)}</div>
                     <div style="color:var(--muted);margin-top:6px">${escapeHtml(p.excerpt)}</div>
-                    <div style="margin-top:8px"><a class="download-link" href="#" onclick="alert('Open full post in editor — replace with real posts')">Read more</a></div>`;
+                    <div style="margin-top:8px"><a class="download-link" href="#" onclick="openBlogModal(${p.id})">Read more</a></div>`;
     list.appendChild(el);
   });
   // small recent list
@@ -489,6 +531,8 @@ renderBlog();
 window.filterCards = filterCards;
 window.openModal = openModal;
 window.closeModal = closeModal;
+window.openBlogModal = openBlogModal;
+window.closeBlogModal = closeBlogModal;
 window.prevPage = prevPage;
 window.nextPage = nextPage;
 window.scrollToSection = id => document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
